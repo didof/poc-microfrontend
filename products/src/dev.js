@@ -6,6 +6,7 @@ export default class Logger {
   constructor() {
     this.isActive = process.env.NODE_ENV === 'development'
     this.prefix = '[Products]'
+    this.customCss = null
   }
 
   static buildWithPrefix(prefix) {
@@ -19,7 +20,16 @@ export default class Logger {
     this.prefix += modifiedPrefix
   }
 
+  useCss(css) {
+    this.customCss = css
+  }
+
   log(...args) {
-    console.log(`%c${this.prefix} ${args}`, css.log)
+    const cssColor = this.customCss ? this.customCss : css.log
+    console.log(`%c${this.prefix} ${args}`, cssColor)
+  }
+
+  table(...args) {
+    console.table(...args)
   }
 }

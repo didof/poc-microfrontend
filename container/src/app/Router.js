@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Nav from './components/Nav/Nav'
+import Nav from '../components/Nav/Nav'
 
-import Home from './pages/Home'
-import Products from './pages/Products'
+import Home from '../pages/Home'
+import Products from '../pages/Products'
 
 export default () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Router from './Router'
+import Router from './app/Router'
 
 export default () => {
   return (
