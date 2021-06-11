@@ -1,0 +1,13 @@
+{
+  "name": "poc-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:container": "cd container && npm run dev",
+    "dev:products": "cd products && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
