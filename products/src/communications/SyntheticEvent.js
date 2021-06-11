@@ -6,18 +6,20 @@ export default class SyntheticEvent {
   constructor(eventName) {
     this._validateEventName(eventName)
 
-    this.options = {}
-    this.event = new CustomEvent(eventName, this.options)
+    this.eventName = eventName
+    this.detail = {}
   }
 
   _validateEventName(eventName) {
     if (typeof eventName !== 'string') throw new TypeError()
   }
 
+  _assemble() {
+    return new CustomEvent(this.eventName, { detail: this.detail })
+  }
+
   add(options) {
-    Object.entries(options).forEach(([key, value]) => {
-      this.options[key] = value
-    })
+    this.detail = { ...this.detail, ...options }
   }
 
   clear() {
@@ -27,10 +29,11 @@ export default class SyntheticEvent {
   log(css) {
     if (css) L.useCss(css)
     L.log(this.eventName)
-    L.table(this.options)
+    L.table(this.detail)
   }
 
   dispatch() {
-    window.dispatchEvent(this.event)
+    const event = this._assemble()
+    window.dispatchEvent(event)
   }
 }

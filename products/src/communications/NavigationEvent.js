@@ -7,7 +7,7 @@ export default class NavigationEvent extends SyntheticEvent {
 
   static buildWithLocation(location) {
     const event = new NavigationEvent()
-    event.add({ location })
+    event.add(location)
     event.log('color: orange;')
     return event
   }

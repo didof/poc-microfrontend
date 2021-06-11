@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run dev:container & npm run dev:products",
     "dev:container": "cd container && npm run dev",
     "dev:products": "cd products && npm run dev"
   },
