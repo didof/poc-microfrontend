@@ -11,7 +11,9 @@ export default () => {
   const { history } = React.useContext(Context)
 
   React.useEffect(() => {
-    history.listen(NavigationEvent.buildWithLocation)
+    history.listen(location => {
+      NavigationEvent.buildWithLocation(location).dispatch()
+    })
   }, [])
 
   return (
