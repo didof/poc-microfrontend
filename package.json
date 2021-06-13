@@ -1,14 +1,14 @@
 {
-  "name": "poc-scripts",
+  "name": "poc-microfrontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "container/src/index.js",
   "scripts": {
-    "dev": "npm run dev:container & npm run dev:products",
-    "dev:container": "cd container && npm run dev",
-    "dev:products": "cd products && npm run dev"
+    "dev": "npm run dev:mf-container & npm run dev:mf-products",
+    "dev:mf-container": "cd container && npm run dev",
+    "dev:mf-products": "cd products && npm run dev"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["microfrontend"],
+  "author": "didof",
   "license": "ISC"
 }

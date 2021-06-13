@@ -6,10 +6,10 @@ export default () => {
     <nav>
       <ul>
         <li>
-          <Link to='/'>Home</Link>
+          <Link to='/'>Products</Link>
         </li>
         <li>
-          <Link to='/products'>Products</Link>
+          <Link to='/auth'>Auth</Link>
         </li>
       </ul>
     </nav>

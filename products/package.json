@@ -1,8 +1,8 @@
 {
-  "name": "products",
+  "name": "mf-products",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "webpack serve --config config/webpack.dev.js"
   },

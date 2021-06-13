@@ -1,7 +1,7 @@
-const path = require('path')
+const paths = require('./paths')
 
 module.exports = {
-  entry: path.resolve(__dirname, '..', 'src', 'index.js'),
+  entry: paths.indexJS,
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
   },

@@ -2,8 +2,10 @@ import React from 'react'
 import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom'
 import Nav from '../components/Nav/Nav'
 
-import Home from '../pages/Home'
 import Products from '../pages/Products'
+import Auth from '../pages/Auth'
+
+import NavigationEvent from '../communications/NavigationEvent'
 
 export default () => {
   return (
@@ -24,7 +26,12 @@ const _Internal = () => {
   }
 
   React.useEffect(() => {
+    history.listen(location => {
+      NavigationEvent.buildWithLocation(location).dispatch()
+    })
+
     window.addEventListener('navigation', navigationHandle)
+
     return () => {
       window.removeEventListener('navigation', navigationHandle)
     }
@@ -34,9 +41,8 @@ const _Internal = () => {
     <>
       <Nav />
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/products' component={Products} />
-        <Route path='/discount' component={Products} />
+        <Route path='/auth' component={Auth} />
+        <Route path='/' component={Products} />
       </Switch>
     </>
   )
