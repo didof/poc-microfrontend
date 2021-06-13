@@ -5,7 +5,7 @@ const __bootstrap = path.resolve(__root, 'src', 'bootstrap')
 
 module.exports = {
   bootstrap: {
-    mount: path.resolve(__bootstrap, 'mount.js'),
+    mount: path.resolve(__bootstrap, 'mount.tsx'),
     webComponent: path.resolve(__bootstrap, 'webComponent.tsx'),
   },
   env: path.resolve(__root, '.dev.env'),

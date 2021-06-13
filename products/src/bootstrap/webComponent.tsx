@@ -1,23 +1,52 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Logger from '../dev'
+import App from '../App'
+import Provider from '../app/Provider'
 
-const L = new Logger()
+import { Config, HistoryType } from '../app/Provider'
 
 export default class MfeProducts extends HTMLElement {
   static tagName = 'mfe-products'
 
+  static get observedAttributes() {
+    return ['config']
+  }
+
+  private observer: MutationObserver
+  private config: Config
+
   constructor() {
     super()
+    this.config = {
+      historyType: HistoryType.Memory,
+    }
+
+    this.observer = new MutationObserver(() => this.update())
+    this.observer.observe(this, { attributes: true })
+  }
+
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    console.log(`[Property:${name}] changed from ${oldValue} to ${newValue}`)
   }
 
   connectedCallback() {
+    if (this.hasAttribute('config')) {
+      let parentalConfig = this.getAttribute('config')
+      let config: Config = JSON.parse(parentalConfig!)
+      if (config.historyType) this.config.historyType = config.historyType
+    }
+
     this.mount()
   }
 
   disconnectedCallback() {
     this.unmount()
+  }
+
+  update() {
+    this.unmount()
+    this.mount()
   }
 
   private mount() {
@@ -29,7 +58,11 @@ export default class MfeProducts extends HTMLElement {
   }
 
   private getComponent() {
-    return <div>hello world</div>
+    return (
+      <Provider config={this.config}>
+        <App />
+      </Provider>
+    )
   }
 }
 

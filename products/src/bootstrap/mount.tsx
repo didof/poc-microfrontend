@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import App from '../App'
-import Provider from '../app/Context'
+import Provider, { Config, HistoryType } from '../app/Provider'
 
-const mount = (el, config) => {
+const mount = (el: HTMLElement, config: Config) => {
   ReactDOM.render(
     <Provider config={config}>
       <App />
@@ -16,8 +16,8 @@ const mount = (el, config) => {
 if (process.env.NODE_ENV === 'development') {
   const rootElementId = '__dev__root__'
 
-  const config = {
-    historyType: 'browser',
+  const config: Config = {
+    historyType: HistoryType.Browser,
   }
 
   const root = document.getElementById(rootElementId)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Router, Switch, Route } from 'react-router-dom'
 
-import { Context } from './Context'
+import { Context } from './Provider'
 import NavigationEvent from '../communications/NavigationEvent'
 
 import Landing from '../pages/Landing'
