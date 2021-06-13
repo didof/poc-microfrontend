@@ -1,16 +1,28 @@
 module.exports = {
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+  },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.m?jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env'],
+            presets: [
+              '@babel/preset-react',
+              '@babel/preset-env',
+              '@babel/preset-typescript',
+            ],
             plugins: ['@babel/plugin-transform-runtime'],
           },
         },
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: ['ts-loader'],
       },
     ],
   },
