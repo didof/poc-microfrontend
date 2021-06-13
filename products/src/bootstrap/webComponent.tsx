@@ -13,7 +13,7 @@ export default class MfeProducts extends HTMLElement {
     return ['config']
   }
 
-  private observer: MutationObserver
+  // private observer: MutationObserver
   private config: Config
 
   constructor() {
@@ -22,12 +22,15 @@ export default class MfeProducts extends HTMLElement {
       historyType: HistoryType.Memory,
     }
 
-    this.observer = new MutationObserver(() => this.update())
-    this.observer.observe(this, { attributes: true })
+    // this.observer = new MutationObserver(() => this.update())
+    // this.observer.observe(this, { attributes: true })
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    console.log(`[Property:${name}] changed from ${oldValue} to ${newValue}`)
+    if (newValue !== oldValue) {
+      console.log(`[property:${name}] changed from ${oldValue} to ${newValue}`)
+      this.update()
+    }
   }
 
   connectedCallback() {
