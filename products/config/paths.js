@@ -1,9 +1,15 @@
 const path = require('path')
 
+const __root = path.resolve(__dirname, '..')
+const __bootstrap = path.resolve(__root, 'src', 'bootstrap')
+
 module.exports = {
-  bootstrap: path.resolve(__dirname, '..', 'src', 'bootstrap.js'),
-  env: path.resolve(__dirname, '..', '.dev.env'),
-  dist: path.resolve(__dirname, 'dist'),
-  indexJS: path.resolve(__dirname, '..', 'src', 'index.js'),
-  indexHTML: path.resolve(__dirname, '..', 'public', 'index.html'),
+  bootstrap: {
+    mount: path.resolve(__bootstrap, 'mount.js'),
+    webComponent: path.resolve(__bootstrap, 'webComponent.tsx'),
+  },
+  env: path.resolve(__root, '.dev.env'),
+  dist: path.resolve(__root, 'dist'),
+  indexJS: path.resolve(__root, 'src', 'index.js'),
+  indexHTML: path.resolve(__root, 'public', 'index.html'),
 }

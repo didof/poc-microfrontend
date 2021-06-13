@@ -31,7 +31,8 @@ const devConfig = {
       filename: 'remoteEntry.js',
       remotes: {},
       exposes: {
-        './app': paths.bootstrap,
+        './bootstrap/mount': paths.bootstrap.mount,
+        './bootstrap/webComponent': paths.bootstrap.webComponent,
       },
       shared: [
         {

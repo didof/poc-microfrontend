@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './App'
-import Provider from './app/Context'
+import App from '../App'
+import Provider from '../app/Context'
 
 const mount = (el, config) => {
   ReactDOM.render(

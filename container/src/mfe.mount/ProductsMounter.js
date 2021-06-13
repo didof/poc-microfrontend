@@ -1,6 +1,6 @@
 import React from 'react'
 
-import mount from 'products/app'
+import mount from 'products/bootstrap/mount'
 
 export default () => {
   const ref = React.useRef()
