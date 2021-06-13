@@ -1,7 +1,9 @@
-const path = require('path')
+const paths = require('./paths')
+require('dotenv').config({ path: paths.env })
+
 const { merge } = require('webpack-merge')
 
-const packageJson = require('../package.json')
+const dependencies = require('../package.json').dependencies
 const commonConfig = require('./webpack.common')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -10,22 +12,44 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const devConfig = {
   mode: 'development',
   devtool: 'eval-source-map',
+  output: {
+    publicPath: `http://localhost:${process.env.APP_PORT}/`,
+    chunkFilename: '[id].[contenthash].js',
+  },
   devServer: {
-    port: 8080,
+    host: '0.0.0.0',
+    port: process.env.APP_PORT,
+    contentBase: paths.dist,
     open: true,
     historyApiFallback: true,
+    hot: true,
+    hotOnly: true,
   },
   plugins: [
     new ModuleFederationPlugin({
       name: 'container',
       filename: 'remoteEntry.js',
+      // library: { type: 'var', name: 'container' },
       remotes: {
         products: 'products@http://localhost:8081/remoteEntry.js',
       },
-      shared: packageJson.dependencies,
+      exposes: {},
+      shared: [
+        {
+          ...dependencies,
+          react: {
+            singleton: true,
+            requiredVersion: dependencies.react,
+          },
+          'react-dom': {
+            singleton: true,
+            requiredVersion: dependencies['react-dom'],
+          },
+        },
+      ],
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', 'public', 'index.html'),
+      template: paths.indexHTML,
     }),
   ],
 }
