@@ -4,9 +4,11 @@ export default () => {
   return (
     <div>
       <mfe-products
-        config={JSON.stringify({
-          historyType: 'memory',
-        })}
+        config={encodeURIComponent(
+          JSON.stringify({
+            historyType: 'memory',
+          })
+        )}
       ></mfe-products>
     </div>
   )

@@ -18,6 +18,7 @@ export default class MfeProducts extends HTMLElement {
 
   constructor() {
     super()
+
     this.config = {
       historyType: HistoryType.Memory,
     }
@@ -36,7 +37,7 @@ export default class MfeProducts extends HTMLElement {
   connectedCallback() {
     if (this.hasAttribute('config')) {
       let parentalConfig = this.getAttribute('config')
-      let config: Config = JSON.parse(parentalConfig!)
+      let config: Config = JSON.parse(decodeURIComponent(parentalConfig!))
       if (config.historyType) this.config.historyType = config.historyType
     }
 

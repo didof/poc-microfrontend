@@ -1,21 +1,32 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, useHistory } from 'react-router-dom'
-import Nav from '../components/Nav/Nav'
+import { BrowserRouter, useHistory } from 'react-router-dom'
+import { HeaderCompound, NavCompound, RoutesCompound } from './compounds'
 
-import Products from '../pages/Products'
-import Auth from '../pages/Auth'
+import NavigationEvent from '../../communications/NavigationEvent'
 
-import NavigationEvent from '../communications/NavigationEvent'
+// TODO: wrap whitBrowserRouter so that _Internal logic can be made into single component
 
-export default () => {
+function Router({ children }) {
   return (
     <BrowserRouter>
+      {children}
       <_Internal />
     </BrowserRouter>
   )
 }
+Router.Header = HeaderCompound
+Router.Nav = NavCompound
+Router.Routes = RoutesCompound
 
-const _Internal = () => {
+export default Router
+
+/**
+ * _Internal
+ *
+ * Will be deleted as soon as upper TODO is solved
+ */
+
+function _Internal() {
   const history = useHistory()
 
   const navigationHandle = event => {
@@ -37,13 +48,5 @@ const _Internal = () => {
     }
   }, [])
 
-  return (
-    <>
-      <Nav />
-      <Switch>
-        <Route path='/auth' component={Auth} />
-        <Route path='/' component={Products} />
-      </Switch>
-    </>
-  )
+  return null
 }
