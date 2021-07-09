@@ -13,7 +13,6 @@ export default () => {
         <Router.Header component={<div>Header</div>} />
         <Router.Nav component={<Nav />} />
         <Router.Routes component={<Routes />} />
-        test
       </Router>
     </div>
   )

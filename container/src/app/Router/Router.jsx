@@ -1,24 +1,16 @@
 import React from 'react'
 import { BrowserRouter, useHistory } from 'react-router-dom'
-import * as Compounds from './compounds'
+import { Header, Nav, Routes } from './compounds'
+
+import { withBrowserRouterCompound } from './withBrowserRouter'
 
 import NavigationEvent from '../../communications/NavigationEvent'
 
-function WithBrowserRouter(Component) {
-  function WrappedWithBrowserRouter(props) {
-    return (
-      <BrowserRouter>
-        <Component {...props} />
-      </BrowserRouter>
-    )
-  }
-
-  WrappedWithBrowserRouter.Header = Compounds.HeaderCompound
-  WrappedWithBrowserRouter.Nav = Compounds.NavCompound
-  WrappedWithBrowserRouter.Routes = Compounds.RoutesCompound
-
-  return WrappedWithBrowserRouter
-}
+const withBrowserRouter = withBrowserRouterCompound({
+  Header,
+  Nav,
+  Routes,
+})
 
 function Router({ children }) {
   const history = useHistory()
@@ -45,4 +37,4 @@ function Router({ children }) {
   return children
 }
 
-export default WithBrowserRouter(Router)
+export default withBrowserRouter(Router)
