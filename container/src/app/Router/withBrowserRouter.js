@@ -10,10 +10,6 @@ function withBrowserRouter(Component) {
       </BrowserRouter>
     )
   }
-
-  WrappedWithBrowserRouter.Header = Compounds.HeaderCompound
-  WrappedWithBrowserRouter.Nav = Compounds.NavCompound
-  WrappedWithBrowserRouter.Routes = Compounds.RoutesCompound
 }
 
 export default withBrowserRouter
