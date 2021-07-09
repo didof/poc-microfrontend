@@ -1,32 +1,26 @@
 import React from 'react'
 import { BrowserRouter, useHistory } from 'react-router-dom'
-import { HeaderCompound, NavCompound, RoutesCompound } from './compounds'
+import * as Compounds from './compounds'
 
 import NavigationEvent from '../../communications/NavigationEvent'
 
-// TODO: wrap whitBrowserRouter so that _Internal logic can be made into single component
+function WithBrowserRouter(Component) {
+  function WrappedWithBrowserRouter(props) {
+    return (
+      <BrowserRouter>
+        <Component {...props} />
+      </BrowserRouter>
+    )
+  }
+
+  WrappedWithBrowserRouter.Header = Compounds.HeaderCompound
+  WrappedWithBrowserRouter.Nav = Compounds.NavCompound
+  WrappedWithBrowserRouter.Routes = Compounds.RoutesCompound
+
+  return WrappedWithBrowserRouter
+}
 
 function Router({ children }) {
-  return (
-    <BrowserRouter>
-      {children}
-      <_Internal />
-    </BrowserRouter>
-  )
-}
-Router.Header = HeaderCompound
-Router.Nav = NavCompound
-Router.Routes = RoutesCompound
-
-export default Router
-
-/**
- * _Internal
- *
- * Will be deleted as soon as upper TODO is solved
- */
-
-function _Internal() {
   const history = useHistory()
 
   const navigationHandle = event => {
@@ -48,5 +42,7 @@ function _Internal() {
     }
   }, [])
 
-  return null
+  return children
 }
+
+export default WithBrowserRouter(Router)
