@@ -1,10 +1,16 @@
 const paths = require('./paths')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: paths.indexJS,
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: paths.indexHTML,
+    }),
+  ],
   module: {
     rules: [
       {

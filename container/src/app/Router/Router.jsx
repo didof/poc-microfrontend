@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Header, Nav, Routes } from './compounds'
 
 import { withBrowserRouterCompound } from './withBrowserRouter'

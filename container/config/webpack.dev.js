@@ -6,7 +6,6 @@ const { merge } = require('webpack-merge')
 const dependencies = require('../package.json').dependencies
 const commonConfig = require('./webpack.common')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 
 const devConfig = {
@@ -39,7 +38,7 @@ const devConfig = {
           ...dependencies,
           react: {
             singleton: true,
-            requiredVersion: dependencies.react,
+            requiredVersion: dependencies['react'],
           },
           'react-dom': {
             singleton: true,
@@ -47,9 +46,6 @@ const devConfig = {
           },
         },
       ],
-    }),
-    new HtmlWebpackPlugin({
-      template: paths.indexHTML,
     }),
   ],
 }

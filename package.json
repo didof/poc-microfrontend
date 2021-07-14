@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "npm run dev:mf-container & npm run dev:mf-products",
     "dev:mf-container": "cd container && npm run dev",
-    "dev:mf-products": "cd products && npm run dev"
+    "dev:mf-products": "cd products && npm run dev",
+    "build": "npm run build:mf-container & npm run build:mf-products",
+    "build:mf-container": "cd container && npm run build",
+    "build:mf-products": "cd products && npm run build"
   },
   "keywords": ["microfrontend"],
   "author": "didof",
