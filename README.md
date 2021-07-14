@@ -6,6 +6,10 @@ In the root folder just run
 
 Or deep dive into the folders and for each use the same command.
 
+The same applies for the build:
+
+`npm run build`
+
 ## Current MFE
 
 ### Container / App-shell
