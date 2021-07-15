@@ -10,7 +10,7 @@ export default () => {
     <div>
       <h1>App-shell</h1>
       <Router>
-        <Router.Header component={<div>Header</div>} />
+        <Router.Header component={<span>Header</span>} />
         <Router.Nav component={<Nav />} />
         <Router.Routes component={<Routes />} />
       </Router>
